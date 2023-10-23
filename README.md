@@ -1,5 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+# Baseball Scorecard App
+The idea of this application is to be able to input a baseball game pitch by pitch as the scorekeeper and then have a record and box score data generated from that data.
+## Goals
+### Part I
+- [ ] Create a UI for inputting lineups 
+- [ ] Create a UI for inputting pitch by pitch data
+- [ ] Create a UI for viewing the box score
+- [ ] Create a UI for viewing the game log
+### Part II
+- [ ] set up database
+- [ ] set up authentication and users
+- [ ] create backend service to save and query data
+## Future Considerations
+- could have live game view in future
+- aggregate player and league stats
+- have leagues with schedule and games
+- Connect player across leagues? 
+- potential to have leagues choose visibility (private/ public) for game data
+- retro scoresheet generation
+- levels of specificity for input and how that could affect data generated
+  - could have a "quick" mode where you just input the result of the play 
+  - could have "detailed" mode where you input the pitch by pitch data including approx pitch location, pitch type, etc.
+  - have to be able to handle game flow with all possibilities. 
 ## Getting Started
 
 First, run the development server:
@@ -14,23 +35,4 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open [http://localhost:3000](http://localhost:3000) in your browser.

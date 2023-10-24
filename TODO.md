@@ -47,6 +47,10 @@ Ideas and tasks to implement for baseball scorecard app.
             - swinging strike
             - foul ball
             - ball in play (at bat result)
+- substitutions
+    - pinch hitter
+    - pinch runner
+    - defensive substitutions
 
 ## To-Do
 ### Views

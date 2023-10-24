@@ -2,12 +2,14 @@
 The idea of this application is to be able to input a baseball game pitch by pitch as the scorekeeper and then have a record and box score data generated from that data.
 ## Goals
 ### Part I
+Start with just generating pbp and box score for a game without having saved teams/ players.
 - [ ] Create a UI for inputting lineups 
 - [ ] Create a UI for inputting pitch by pitch data
 - [ ] Create a UI for viewing the box score
 - [ ] Create a UI for viewing the game log
 ### Part II
-- [ ] set up database
+Probably want to keep the ability to just create and then save box scores for a game, but also want to be able to save teams and players and then have the ability to create a game with those teams and players in a league.
+- [ ] create database and set up schema/ api
 - [ ] set up authentication and users
 - [ ] create backend service to save and query data
 ## Future Considerations

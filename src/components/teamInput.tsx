@@ -1,3 +1,6 @@
+// import {useState} from "react";
+import ItemSelection from "@/components/ItemSelection";
+
 export default function TeamInput({home}: {home: boolean}) {
     return (
         <form>
@@ -23,6 +26,8 @@ export default function TeamInput({home}: {home: boolean}) {
                             </div>
                         </div>
                     </div>
+                    <ItemSelection></ItemSelection>
+
                 </div>
             </div>
 

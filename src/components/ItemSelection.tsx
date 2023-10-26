@@ -13,6 +13,7 @@ export default function BaseballLineup() {
     const initialPositions = {"C": true, '1B': true, '2B': true, '3B': true, 'SS': true, 'LF': true, 'CF': true, 'RF': true, 'DH': true, "P": true};
     const [lineup, setLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
     const [availablePositions, setAvailablePositions] = useState<Record<string, boolean>>(initialPositions);
+    const [pitcherHitting, setPitcherHitting] = useState<boolean>(false);
 
     const handleNameChange = (battingOrder: number, playerName: string) => {
         const updatedLineup = lineup.map((player) => {
@@ -32,12 +33,24 @@ export default function BaseballLineup() {
             // Add the previously assigned position back to available positions
             let remove = {...availablePositions};
             remove[assignedPosition] = true;
+            if (assignedPosition === "P") {
+                remove["DH"] = true;
+                setPitcherHitting(false);
+            } else if (assignedPosition === "DH") {
+                remove["P"] = true;
+            }
             setAvailablePositions(remove);
         }
 
         // Remove the newly assigned position from available positions
         let add = {...availablePositions};
         add[newPosition] = false;
+        if (newPosition === "P") {
+            add["DH"] = false;
+            setPitcherHitting(true);
+        } else if (newPosition === "DH") {
+            add["P"] = false;
+        }
         setAvailablePositions(add);
 
         const updatedLineup = lineup.map((player) => {
@@ -56,6 +69,12 @@ export default function BaseballLineup() {
             // Add the unassigned position back to available positions
             let remove = {...availablePositions};
             remove[player.position] = true;
+            if (player.position === "P") {
+                remove["DH"] = true;
+                setPitcherHitting(false);
+            } else if (player.position === "DH") {
+                remove["P"] = true;
+            }
             setAvailablePositions(remove);
 
             // Remove the position from the player
@@ -68,14 +87,12 @@ export default function BaseballLineup() {
 
     return (
         <div>
-            <h2>Baseball Lineup</h2>
             <table>
                 <thead>
                 <tr>
                     <th>Batting Order</th>
                     <th>Player Name</th>
                     <th>Position</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>

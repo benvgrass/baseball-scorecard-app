@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, {ReactNode, useState} from 'react';
 
 interface Player {
     battingOrder: number;
@@ -9,9 +9,10 @@ interface Player {
 
 export default function BaseballLineup() {
     const battingOrderNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const initialPositions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'P'];
+    const positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'P'];
+    const initialPositions = {"C": true, '1B': true, '2B': true, '3B': true, 'SS': true, 'LF': true, 'CF': true, 'RF': true, 'DH': true, "P": true};
     const [lineup, setLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
-    const [availablePositions, setAvailablePositions] = useState<string[]>(initialPositions);
+    const [availablePositions, setAvailablePositions] = useState<Record<string, boolean>>(initialPositions);
 
     const handleNameChange = (battingOrder: number, playerName: string) => {
         const updatedLineup = lineup.map((player) => {
@@ -29,11 +30,15 @@ export default function BaseballLineup() {
 
         if (assignedPosition) {
             // Add the previously assigned position back to available positions
-            setAvailablePositions([...availablePositions, assignedPosition]);
+            let remove = {...availablePositions};
+            remove[assignedPosition] = true;
+            setAvailablePositions(remove);
         }
 
         // Remove the newly assigned position from available positions
-        setAvailablePositions(availablePositions.filter((position) => position !== newPosition));
+        let add = {...availablePositions};
+        add[newPosition] = false;
+        setAvailablePositions(add);
 
         const updatedLineup = lineup.map((player) => {
             if (player.battingOrder === battingOrder) {
@@ -49,7 +54,9 @@ export default function BaseballLineup() {
         const player = lineup.find((p) => p.battingOrder === battingOrder);
         if (player) {
             // Add the unassigned position back to available positions
-            setAvailablePositions([...availablePositions, player.position]);
+            let remove = {...availablePositions};
+            remove[player.position] = true;
+            setAvailablePositions(remove);
 
             // Remove the position from the player
             const updatedPlayer = { ...player, position: '' };
@@ -95,11 +102,15 @@ export default function BaseballLineup() {
                                     onChange={(e) => handlePositionChange(player.battingOrder, e.target.value)}
                                 >
                                     <option value="">Select Position</option>
-                                    {availablePositions.map((position) => (
-                                        <option key={position} value={position}>
-                                            {position}
-                                        </option>
-                                    ))}
+                                    {positions.reduce((acc, position) => {
+                                        if (availablePositions[position]) {
+                                            acc.push(
+                                                <option key={position} value={position}>
+                                                    {position}
+                                                </option>);
+                                        }
+                                        return acc;} ,new Array<ReactNode>())
+                                        }
                                 </select>
                             )}
                         </td>

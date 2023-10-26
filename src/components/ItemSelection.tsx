@@ -103,14 +103,15 @@ export default function BaseballLineup() {
                                 >
                                     <option value="">Select Position</option>
                                     {positions.reduce((acc, position) => {
-                                        if (availablePositions[position]) {
-                                            acc.push(
-                                                <option key={position} value={position}>
-                                                    {position}
-                                                </option>);
-                                        }
-                                        return acc;}, new Array<ReactNode>())
-                                        }
+                                            if (availablePositions[position]) {
+                                                acc.push(
+                                                    <option key={position} value={position}>
+                                                        {position}
+                                                    </option>);
+                                            }
+                                            return acc;
+                                        }, new Array<ReactNode>())
+                                    }
                                 </select>
                             )}
                         </td>

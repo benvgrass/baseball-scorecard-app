@@ -149,7 +149,7 @@ export default function BaseballLineup() {
                                                         )}
                                                     </Listbox.Option>
                                                     {positions.reduce((acc, position) => {
-                                                            if (availablePositions[position]) {
+                                                            if (availablePositions[position] || player.position === position) {
                                                                 acc.push(
                                                                     <Listbox.Option key={position}
                                                                                     className={({ active }) =>

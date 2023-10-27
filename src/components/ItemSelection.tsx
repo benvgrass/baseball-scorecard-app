@@ -1,5 +1,7 @@
 'use client';
 import React, {ReactNode, useState} from 'react';
+import {Listbox} from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 interface Player {
     battingOrder: number;
@@ -114,22 +116,28 @@ export default function BaseballLineup() {
                                 </>
                             )}
                             {!player.position && (
-                                <select
+                                <Listbox
                                     value={player.position}
-                                    onChange={(e) => handlePositionChange(player.battingOrder, e.target.value)}
+                                    onChange={(e) => handlePositionChange(player.battingOrder, e)}
                                 >
-                                    <option value="">Select Position</option>
-                                    {positions.reduce((acc, position) => {
-                                            if (availablePositions[position]) {
-                                                acc.push(
-                                                    <option key={position} value={position}>
-                                                        {position}
-                                                    </option>);
-                                            }
-                                            return acc;
-                                        }, new Array<ReactNode>())
-                                    }
-                                </select>
+                                    {({ open }) => (
+                                        <>
+                                            <Listbox.Button>{player.position || '--'}</Listbox.Button>
+                                            <Listbox.Options>
+                                                {positions.reduce((acc, position) => {
+                                                        if (availablePositions[position]) {
+                                                            acc.push(
+                                                                <Listbox.Option key={position} value={position}>
+                                                                    {position}
+                                                                </Listbox.Option>);
+                                                        }
+                                                        return acc;
+                                                    }, new Array<ReactNode>())
+                                                }
+                                            </Listbox.Options>
+                                        </>
+                                    )}
+                                </Listbox>
                             )}
                         </td>
                     </tr>

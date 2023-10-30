@@ -95,9 +95,9 @@ export default function BaseballLineup() {
             <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                 <tr>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Batting Order</th>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Player Name</th>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Position</th>
+                    <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Lineup</th>
+                    <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Batters</th>
+                    <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Position</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -136,9 +136,9 @@ export default function BaseballLineup() {
                                 {({ open }) => (
                                     <>
                                         <div className="flex space-x-2.5 divide-y-2 divide-x mx-2">
-                                            <Listbox.Button className="relative px-1 w-full cursor-default rounded-md bg-white py-1.5 pl-3 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 sm:pl-2 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm leading-6">
                                                 <span className="block truncate">{player.position || '--'}</span>
-                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                <span className="flex pointer-events-none absolute inset-y-0 right-0 sm:pr-1 items-center">
                                                     <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                                 </span>
                                             </Listbox.Button>
@@ -149,11 +149,11 @@ export default function BaseballLineup() {
                                                 leaveFrom="opacity-100"
                                                 leaveTo="opacity-0"
                                             >
-                                                <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
                                                     <Listbox.Option value={""} className={({ active }) =>
                                                         classNames(
                                                             active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                            'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                            'relative flex cursor-default select-none py-2 pl-3 pr-9'
                                                         )
                                                     }>
                                                         {({ selected, active }) => (
@@ -171,7 +171,7 @@ export default function BaseballLineup() {
                                                                                     className={({ active }) =>
                                                                                         classNames(
                                                                                             active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                                                            'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                                                            'relative flex cursor-default select-none py-2 pl-3 pr-9'
                                                                                         )
                                                                                     }
                                                                                     value={position}>

@@ -91,27 +91,43 @@ export default function BaseballLineup() {
     // };
 
     return (
-        <div>
-            <table>
+        <div className="px-4 sm:px-6 lg:px-8 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                 <tr>
-                    <th>Batting Order</th>
-                    <th>Player Name</th>
-                    <th>Position</th>
+                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Batting Order</th>
+                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Player Name</th>
+                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Position</th>
                 </tr>
                 </thead>
                 <tbody>
-                {lineup.map((player) => (
+                {lineup.map((player, i) => (
                     <tr key={player.battingOrder}>
-                        <td>{player.battingOrder}</td>
-                        <td>
-                            <input
-                                type="text"
-                                value={player.name}
-                                onChange={(e) => handleNameChange(player.battingOrder, e.target.value)}
-                            />
+                        <td className={classNames(
+                            i === 0 ? '' : 'border-t border-gray-200',
+                            'relative px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
+                        )}>
+                            <div className="py-3.5 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">
+                                {player.battingOrder}
+                            </div>
+                            </td>
+                        <td className={classNames(
+                            i === 0 ? '' : 'border-t border-gray-200',
+                            'relative mt-auto px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
+                        )}>
+                            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <input
+                                    type="text"
+                                    value={player.name}
+                                    onChange={(e) => handleNameChange(player.battingOrder, e.target.value)}
+                                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                />
+                            </div>
                         </td>
-                        <td>
+                        <td className={classNames(
+                            i === 0 ? '' : 'border-t border-gray-200',
+                            'w-full mt-auto px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
+                        )}>
 
                             <Listbox
                                 value={player.position}
@@ -119,8 +135,8 @@ export default function BaseballLineup() {
                             >
                                 {({ open }) => (
                                     <>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <div className="flex space-x-2.5 divide-y-2 divide-x mx-2">
+                                            <Listbox.Button className="relative px-1 w-full cursor-default rounded-md bg-white py-1.5 pl-3 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                                 <span className="block truncate">{player.position || '--'}</span>
                                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                                     <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />

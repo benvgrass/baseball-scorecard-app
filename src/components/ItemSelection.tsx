@@ -95,7 +95,6 @@ export default function BaseballLineup() {
             <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                 <tr>
-                    <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Lineup</th>
                     <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Batters</th>
                     <th scope="col" className="py-4 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Position</th>
                 </tr>
@@ -105,17 +104,12 @@ export default function BaseballLineup() {
                     <tr key={player.battingOrder}>
                         <td className={classNames(
                             i === 0 ? '' : 'border-t border-gray-200',
-                            'relative px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
-                        )}>
-                            <div className="py-3.5 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">
-                                {player.battingOrder}
-                            </div>
-                            </td>
-                        <td className={classNames(
-                            i === 0 ? '' : 'border-t border-gray-200',
                             'relative mt-auto px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
                         )}>
-                            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                            <div className="group flex rounded-md shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <span className="inline-flex items-center rounded-l-md border-0 bg-gray-200 group-focus-within:bg-indigo-600 group-focus-within:text-white px-3 font-semibold  text-gray-700 sm:text-sm">
+                                    {player.battingOrder + '.'}
+                                </span>
                                 <input
                                     type="text"
                                     value={player.name}
@@ -136,10 +130,10 @@ export default function BaseballLineup() {
                                 {({ open }) => (
                                     <>
                                         <div className="flex space-x-2.5 divide-y-2 divide-x mx-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 sm:pl-2 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm leading-6">
-                                                <span className="block truncate">{player.position || '--'}</span>
-                                                <span className="flex pointer-events-none absolute inset-y-0 right-0 sm:pr-1 items-center">
-                                                    <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                            <Listbox.Button className="group focus-within:font-semibold relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 sm:pl-2 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm leading-6">
+                                                <span className="block">{player.position || '--'}</span>
+                                                <span className="flex pointer-events-none absolute inset-y-0 right-0 pr-0.5 sm:pr-1 items-center">
+                                                        <ChevronUpDownIcon className="h-5 w-5 text-gray-700 group-focus-within:text-indigo-600" aria-hidden="true" />
                                                 </span>
                                             </Listbox.Button>
                                             <Transition
@@ -149,7 +143,7 @@ export default function BaseballLineup() {
                                                 leaveFrom="opacity-100"
                                                 leaveTo="opacity-0"
                                             >
-                                                <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
+                                                <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm sm:leading-6">
                                                     <Listbox.Option value={""} className={({ active }) =>
                                                         classNames(
                                                             active ? 'bg-indigo-600 text-white' : 'text-gray-900',

@@ -72,18 +72,18 @@ export default function LineupCard() {
     return (
         <>
 
-            <div className="relative shadow-md px-4 sm:px-6 lg:px-8 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg">
+            <div className="relative sm:shadow-md px-4 sm:px-6 lg:px-8 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg">
                 <label
                     htmlFor="lineup"
-                    className="absolute -top-3.5 left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"
+                    className="absolute -top-3.5 sm:left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"
                 >
                     Batting Lineup
                 </label>
                 <table id="lineup" className="min-w-full divide-y divide-gray-300">
                     <thead>
                     <tr>
-                        <th scope="col" className="pb-3 pt-5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">Batters</th>
-                        <th scope="col" className="pb-3 pt-5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">Position</th>
+                        <th scope="col" className="pb-0.5 pt-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">Batters</th>
+                        <th scope="col" className="pb-0.5 pt-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">Position</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -93,7 +93,7 @@ export default function LineupCard() {
                                 i === 0 ? '' : 'border-t border-gray-200',
                                 'relative mt-auto px-3 py-3.5 text-sm text-gray-500 lg:table-cell'
                             )}>
-                                <div className="group flex rounded-md shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <div className="group flex rounded-md sm:shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                     <span className="inline-flex items-center rounded-l-md border-0 bg-gray-200 group-focus-within:bg-indigo-600 group-focus-within:text-white px-3 font-semibold  text-gray-700 sm:text-sm">
                                         {player.battingOrder + '.'}
                                     </span>
@@ -117,7 +117,7 @@ export default function LineupCard() {
                                     {({ open }) => (
                                         <>
                                             <div className="flex space-x-2.5 divide-y-2 divide-x mx-2">
-                                                <Listbox.Button className="group focus-within:font-semibold relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 sm:pl-2 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm leading-6">
+                                                <Listbox.Button className="group focus-within:font-semibold relative w-full cursor-default rounded-md bg-white py-1.5 pl-1 sm:pl-2 text-left text-gray-900 sm:shadow-sm ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm leading-6">
                                                     <span className="block">{player.position || '--'}</span>
                                                     <span className="flex pointer-events-none absolute inset-y-0 right-0 pr-0.5 sm:pr-1 items-center">
                                                             <ChevronUpDownIcon className="h-5 w-5 text-gray-700 group-focus-within:text-indigo-600" aria-hidden="true" />
@@ -130,7 +130,7 @@ export default function LineupCard() {
                                                     leaveFrom="opacity-100"
                                                     leaveTo="opacity-0"
                                                 >
-                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm sm:leading-6">
+                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 sm:shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm sm:leading-6">
                                                         <Listbox.Option value={""} className={({ active }) =>
                                                             classNames(
                                                                 active ? 'bg-indigo-600 text-white' : 'text-gray-900',
@@ -190,14 +190,14 @@ export default function LineupCard() {
                     </tbody>
                 </table>
             </div>
-            <div className="relative px-4 shadow-md sm:px-6 lg:px-8 py-4 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg" >
+            <div className="relative px-4 sm:shadow-md sm:px-6 lg:px-8 py-4 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg" >
                 <label
                     htmlFor="pitcher"
-                    className="absolute -top-3.5 left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"
+                    className="absolute -top-3.5 sm:left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"
                 >
                     Starting Pitcher
                 </label>
-                <div className="group flex shadow-sm ring-1 ring-inset ring-gray-200 rounded-md focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                <div className="group flex sm:shadow-sm ring-1 ring-inset ring-gray-200 rounded-md focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                     <span className="inline-flex items-center rounded-l-md border-0 bg-gray-200 group-focus-within:bg-indigo-600 group-focus-within:text-white px-3 font-semibold text-gray-700 sm:text-sm">
                         SP
                     </span>

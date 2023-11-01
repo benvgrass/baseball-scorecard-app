@@ -15,15 +15,19 @@ export default function LineupCard() {
     const initialPositions = {"C": true, '1B': true, '2B': true, '3B': true, 'SS': true, 'LF': true, 'CF': true, 'RF': true, 'DH': true, "P": true};
     const [lineup, setLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
     const [availablePositions, setAvailablePositions] = useState<Record<string, boolean>>(initialPositions);
-    const [pitcherHitting, setPitcherHitting] = useState<boolean>(false);
+    const [pitcherHitting, setPitcherHitting] = useState<number>(-1);
     const [startingPitcher, setStartingPitcher] = useState<string>('');
     function classNames(...classes: string[]): string {
         return classes.filter(Boolean).join(' ')
     }
 
     const handleNameChange = (battingOrder: number, playerName: string) => {
+
         const updatedLineup = lineup.map((player) => {
             if (player.battingOrder === battingOrder) {
+                if (battingOrder === pitcherHitting) {
+                    setStartingPitcher(playerName);
+                }
                 return { ...player, name: playerName };
             }
             return player;
@@ -31,6 +35,10 @@ export default function LineupCard() {
 
         setLineup(updatedLineup);
     };
+
+    const handlePitcherChange = (pitcherName: string) => {
+        setStartingPitcher(pitcherName);
+    }
 
     const handlePositionChange = (battingOrder: number, newPosition: string) => {
         const player = lineup.find((p) => p.battingOrder === battingOrder);
@@ -42,7 +50,8 @@ export default function LineupCard() {
                 nowAvailable[assignedPosition] = true;
                 if (assignedPosition === "P") {
                     nowAvailable["DH"] = true;
-                    setPitcherHitting(false);
+                    setPitcherHitting(-1);
+                    setStartingPitcher("");
                 } else if (assignedPosition === "DH") {
                     nowAvailable["P"] = true;
                 }
@@ -52,7 +61,12 @@ export default function LineupCard() {
                 nowAvailable[newPosition] = false;
                 if (newPosition === "P") {
                     nowAvailable["DH"] = false;
-                    setPitcherHitting(true);
+                    setPitcherHitting(battingOrder);
+                    if (player.name) {
+                        setStartingPitcher(player.name);
+                    } else if (startingPitcher) {
+                        player.name = startingPitcher;
+                    }
                 } else if (newPosition === "DH") {
                     nowAvailable["P"] = false;
                 }
@@ -137,7 +151,8 @@ export default function LineupCard() {
                                                                 'relative flex cursor-default select-none py-2 pl-3 pr-9'
                                                             )
                                                         }>
-                                                            {({ selected, active }) => (
+                                                            {/*{({ selected, active }) => (*/}
+                                                            {({ selected }) => (
                                                                 <>
                                                                     <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
                                                                         --
@@ -197,16 +212,26 @@ export default function LineupCard() {
                 >
                     Starting Pitcher
                 </label>
-                <div className="group flex sm:shadow-sm ring-1 ring-inset ring-gray-200 rounded-md focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <span className="inline-flex items-center rounded-l-md border-0 bg-gray-200 group-focus-within:bg-indigo-600 group-focus-within:text-white px-3 font-semibold text-gray-700 sm:text-sm">
+                <div className={`group flex sm:shadow-sm ring-1 ring-inset ring-gray-200 rounded-md
+                    focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600
+                    ${pitcherHitting > 0? 'bg-gray-200 cursor-none': ''}`}>
+
+                    <span className="inline-flex items-center rounded-l-md border-0 bg-gray-200
+                        group-focus-within:bg-indigo-600 group-focus-within:text-white
+                        px-3 font-semibold text-gray-700 sm:text-sm"
+                    >
                         SP
                     </span>
                     <input
                         type="text"
                         id="pitcher"
-                        className="block flex-1 bg-transparent border-0 py-1.5 pl-1 text-gray-900 focus:ring-0 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                        disabled={pitcherHitting > 0}
+                        value={startingPitcher}
+                        onChange={(e) => handlePitcherChange(e.target.value)}
+                        className="block flex-1 bg-transparent border-0 py-1.5 pl-1 text-gray-900 focus:ring-0
+                            placeholder:text-gray-400 sm:text-sm sm:leading-6 disabled:text-gray-700 disabled:cursor-none"
                     />
-
+                {/*247 marshall avenue los angeles*/}
                 </div>
             </div>
         </>

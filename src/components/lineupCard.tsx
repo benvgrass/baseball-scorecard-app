@@ -9,7 +9,7 @@ interface Player {
     position: string;
 }
 
-export default function BaseballLineup() {
+export default function LineupCard() {
     const battingOrderNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'P'];
     const initialPositions = {"C": true, '1B': true, '2B': true, '3B': true, 'SS': true, 'LF': true, 'CF': true, 'RF': true, 'DH': true, "P": true};

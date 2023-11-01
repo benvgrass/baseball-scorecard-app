@@ -1,5 +1,5 @@
 // import {useState} from "react";
-import ItemSelection from "@/components/ItemSelection";
+import LineupCard from "@/components/lineupCard";
 import React from "react";
 
 export default function TeamInput({home}: {home: boolean}) {
@@ -23,9 +23,7 @@ export default function TeamInput({home}: {home: boolean}) {
                         className="block flex-1 border-0 bg-transparent py-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-md sm:leading-6"
                     />
                 </div>
-
-                <ItemSelection></ItemSelection>
-
+                <LineupCard/>
             </div>
 
         </form>

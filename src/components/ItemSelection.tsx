@@ -72,7 +72,7 @@ export default function BaseballLineup() {
     return (
         <>
 
-            <div className="relative px-4 sm:px-6 lg:px-8 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg">
+            <div className="relative shadow-md px-4 sm:px-6 lg:px-8 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg">
                 <label
                     htmlFor="lineup"
                     className="absolute -top-3.5 left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"
@@ -190,7 +190,7 @@ export default function BaseballLineup() {
                     </tbody>
                 </table>
             </div>
-            <div className="relative px-4 sm:px-6 lg:px-8 py-4 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg" >
+            <div className="relative px-4 shadow-md sm:px-6 lg:px-8 py-4 -mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 rounded-sm sm:rounded-lg" >
                 <label
                     htmlFor="pitcher"
                     className="absolute -top-3.5 left-2 inline-block bg-white px-1 text-md font-medium text-gray-900"

@@ -10,10 +10,18 @@ export interface Player {
 
 export default function NewGame() {
     const battingOrderNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const[awayName, setAwayName] = useState<string>('');
+    const [awayName, setAwayName] = useState<string>('');
     const [homeName, setHomeName] = useState<string>('');
-    const [awayLineup, setAwayLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
-    const [homeLineup, setHomeLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
+    const [awayLineup, setAwayLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({
+        battingOrder,
+        name: '',
+        position: ''
+    })));
+    const [homeLineup, setHomeLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({
+        battingOrder,
+        name: '',
+        position: ''
+    })));
     const [awayPitcher, setAwayPitcher] = useState<string>('');
     const [homePitcher, setHomePitcher] = useState<string>('');
 

@@ -1,8 +1,9 @@
 // import {useState} from "react";
 import LineupCard from "@/components/lineupCard";
 import React from "react";
+import {Player} from "@/components/newGame";
 
-export default function TeamInput({home}: {home: boolean}) {
+export default function TeamInput({home, teamName, setTeamName, lineup, setLineup, startingPitcher, setStartingPitcher}: {home: boolean, teamName: string, setTeamName: (teamName: string) => void, lineup: Player[], setLineup: (lineup: Player[]) => void, startingPitcher: string, setStartingPitcher: (startingPitcher: string) => void}) {
     return (
         <form>
             <div className="relative h-full sm:shadow-md rounded-lg p-6 border-0 ring-1 ring-inset ring-gray-300">
@@ -23,7 +24,12 @@ export default function TeamInput({home}: {home: boolean}) {
                         className="block flex-1 border-0 bg-transparent py-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-md sm:leading-6"
                     />
                 </div>
-                <LineupCard/>
+                <LineupCard
+                    lineup={lineup}
+                    setLineup={setLineup}
+                    startingPitcher={startingPitcher}
+                    setStartingPitcher={setStartingPitcher}
+                    />
             </div>
 
         </form>

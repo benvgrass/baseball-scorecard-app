@@ -2,21 +2,16 @@
 import React, {Fragment, ReactNode, useState} from 'react';
 import {Listbox, Transition} from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import {Player} from "@/components/newGame";
 
-interface Player {
-    battingOrder: number;
-    name: string;
-    position: string;
-}
 
-export default function LineupCard() {
+export default function LineupCard({lineup, setLineup, startingPitcher, setStartingPitcher}: {lineup: Player[], setLineup: (lineup: Player[]) => void, startingPitcher: string, setStartingPitcher: (startingPitcher: string) => void}) {
     const battingOrderNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH', 'P'];
     const initialPositions = {"C": true, '1B': true, '2B': true, '3B': true, 'SS': true, 'LF': true, 'CF': true, 'RF': true, 'DH': true, "P": true};
-    const [lineup, setLineup] = useState<Player[]>(battingOrderNumbers.map((battingOrder) => ({ battingOrder, name: '', position: '' })));
     const [availablePositions, setAvailablePositions] = useState<Record<string, boolean>>(initialPositions);
     const [pitcherHitting, setPitcherHitting] = useState<number>(-1);
-    const [startingPitcher, setStartingPitcher] = useState<string>('');
+
     function classNames(...classes: string[]): string {
         return classes.filter(Boolean).join(' ')
     }
@@ -113,6 +108,7 @@ export default function LineupCard() {
                                     </span>
                                     <input
                                         type="text"
+                                        aria-label={`player-${player.battingOrder}`}
                                         value={player.name}
                                         onChange={(e) => handleNameChange(player.battingOrder, e.target.value)}
                                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"

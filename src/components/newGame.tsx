@@ -1,6 +1,7 @@
 'use client';
 import TeamInput from "@/components/teamInput";
-import {useState} from "react";
+import { useState } from "react";
+import { createNewGame } from "@/utils/newGameActions";
 
 export interface Player {
     battingOrder: number;
@@ -39,9 +40,26 @@ export default function NewGame() {
     const [awayPitcher, setAwayPitcher] = useState<string>('');
     const [homePitcher, setHomePitcher] = useState<string>('');
     
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('submitting');
+        const game: Game = {
+            away: {
+                name: awayName,
+                lineup: {
+                    batters: awayLineup,
+                    pitcher: awayPitcher
+                }
+            },
+            home: {
+                name: homeName,
+                lineup: {
+                    batters: homeLineup,
+                    pitcher: homePitcher
+                }
+            }
+        };
+        await createNewGame(game);
+
     }
 
     return (

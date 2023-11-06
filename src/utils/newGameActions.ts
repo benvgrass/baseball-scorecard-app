@@ -2,12 +2,12 @@
 
 import {Player} from "@/components/newGame";
 
-interface Game {
+type Game = {
     away: Team;
     home: Team;
 }
 
-interface Team {
+type Team = {
     name: string;
     lineup:
         {
@@ -16,10 +16,30 @@ interface Team {
         };
 }
 
-export async function createNewGame(gameData: Game): Promise<string> {
+type CreateGameResponse = {
+    game_id: string
+}
+
+export async function createNewGame(gameData: Game) {
     // TODO: do post request to server
-    // TODO: return game_id response
+    try {
+        const response = await fetch("", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json",
+           },
+            body: JSON.stringify(gameData),
+        });
+
+        const result: CreateGameResponse = await response.json();
+        const game_id = result.game_id;
+
+        // TODO: do something on response
+        console.log(`Game ID received: ${game_id}`);
+    } catch (e) {
+        // TODO: do something on error
+        console.log(`Error: ${e}`);
+    }
     console.log(gameData);
     
-    return 'game_id'
 }

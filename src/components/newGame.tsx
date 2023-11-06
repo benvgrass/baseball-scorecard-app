@@ -3,7 +3,7 @@ import TeamInput from "@/components/teamInput";
 import { useState } from "react";
 import { createNewGame } from "@/utils/newGameActions";
 
-export interface Player {
+export type Player = {
     battingOrder: number;
     name: string;
     position: string;

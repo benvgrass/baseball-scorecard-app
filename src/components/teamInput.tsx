@@ -1,7 +1,7 @@
 // import {useState} from "react";
 import LineupCard from "@/components/lineupCard";
 import React from "react";
-import {Player} from "@/components/newGame";
+import {Player} from "@/app/game/page";
 
 export default function TeamInput({
                                       home,

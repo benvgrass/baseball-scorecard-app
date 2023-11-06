@@ -1,7 +1,7 @@
 import React, {Fragment, ReactNode, useState} from 'react';
 import {Listbox, Transition} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
-import {Player} from "@/components/newGame";
+import {Player} from "@/app/game/page";
 
 
 export default function LineupCard({lineup, setLineup, startingPitcher, setStartingPitcher}: {

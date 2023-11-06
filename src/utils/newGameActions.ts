@@ -1,6 +1,7 @@
 'use server';
 
-import {Player} from "@/components/newGame";
+import {Player} from "@/app/game/page";
+import { redirect } from "next/navigation";
 
 type Game = {
     away: Team;
@@ -36,6 +37,7 @@ export async function createNewGame(gameData: Game) {
 
         // TODO: do something on response
         console.log(`Game ID received: ${game_id}`);
+        redirect(`/game/${game_id}`);
     } catch (e) {
         // TODO: do something on error
         console.log(`Error: ${e}`);

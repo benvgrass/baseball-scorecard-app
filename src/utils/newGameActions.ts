@@ -30,16 +30,17 @@ export async function createNewGame(gameData: Game) {
            },
             body: JSON.stringify(gameData),
         });
-
+        console.log(`Response: ${response}`);
         const result: CreateGameResponse = await response.json();
+        console.log(`Result: ${result}`);
         const game_id = result.game_id;
-
         console.log(`Game ID received: ${game_id}`);
+        // TODO: Move outside try catch
         redirect(`/game/${game_id}`);
     } catch (e) {
         // TODO: do something on error
         console.log(`Error: ${e}`);
-        alert(`Error: ${e}`);
+        // alert(`Error: ${e}`);
     }
     console.log(gameData);
     

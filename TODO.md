@@ -54,5 +54,53 @@ Ideas and tasks to implement for baseball scorecard app.
 
 ## To-Do
 ### Views
-- [ ] Create a UI for inputting teams & lineups
+- [x] Create a UI for inputting teams & lineups
 - [ ] Create a UI for pbp gameplay
+
+# Model for Game Data
+## Game
+### Game State
+- inning (top/bottom)
+- count (balls/strikes)
+- outs
+- batter(where in lineup)
+- pitcher 
+- active lineup and position in lineup
+- game batter data entered after each PA
+- game pitcher data entered after each PA
+
+```yaml
+game: 
+  {
+    state: {
+      home_runs: number,
+      away_runs: number,
+      balls: number,
+      strikes: number,
+      outs: number,
+      inning:
+        {
+          top: boolean,
+          number: number
+        },
+      bases: [BaseState],
+    },
+    curr_pa: PA,
+    past_pa: [PA]
+}
+BaseState:
+  {
+    occupied: boolean,
+    player: Player
+  }
+PA:
+  {
+    batter: Player,
+    pitcher: Player,
+    result: PA_Result,
+    pitches: [Pitch]
+  }
+```
+### Box score data
+Box score data will be aggregated from the play data after submission of a play and then updated in the box score
+Theoretically, league data would be updated via aggregation on submission of game data

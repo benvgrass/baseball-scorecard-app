@@ -69,8 +69,8 @@ Ideas and tasks to implement for baseball scorecard app.
 - game batter data entered after each PA
 - game pitcher data entered after each PA
 
-```yaml
-game: 
+```typescript
+type LiveGame =
   {
     state: {
       home_runs: number,
@@ -85,20 +85,31 @@ game:
         },
       bases: [BaseState],
     },
-    curr_pa: PA,
+    curr_pa: {
+      batter: Player,
+      pitcher: Player,
+      result: PaResult,
+      pitches: [Pitch]
+    },
     past_pa: [PA]
 }
-BaseState:
+type BaseState =
   {
     occupied: boolean,
     player: Player
   }
-PA:
+type Pa =
   {
     batter: Player,
     pitcher: Player,
-    result: PA_Result,
-    pitches: [Pitch]
+    result: PaResult,
+    events: [RunPitchEvent]
+  }
+type RunPitchEvent =
+  {
+    pitch?: PitchEvent,
+    run_event?: RunningEvent,
+    end_state: BaseState // lazy load start state on front end to display detailed event
   }
 ```
 ### Box score data

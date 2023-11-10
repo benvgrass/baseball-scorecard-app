@@ -1,5 +1,6 @@
 # Baseball Scorecard App
 The idea of this application is to be able to input a baseball game pitch by pitch as the scorekeeper and then have a record and box score data generated from that data.
+[Click here for server code.](https://github.com/benvgrass/baseball-scorecard-server)
 ## Goals
 ### Part I
 Start with just generating pbp and box score for a game without having saved teams/ players.

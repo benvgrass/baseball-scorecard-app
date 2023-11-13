@@ -4,7 +4,8 @@ import Link from "next/link";
 export default function Home() {
     return (
         <>
-            <Link href="/game">New Game</Link>
+            <Link className="bg-blue-500 p-4 text-white text-lg rounded-xl" href="/game">New Game</Link>
+
         </>
     );
 }

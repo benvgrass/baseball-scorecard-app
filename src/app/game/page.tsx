@@ -1,26 +1,15 @@
 'use client';
 import TeamInput from "@/components/teamInput";
-import {useState} from "react";
+import { useState } from "react";
+import { createNewGame } from "@/utils/newGameActions";
 
-export interface Player {
+export type Player = {
     battingOrder: number;
     name: string;
     position: string;
 }
 
-interface Game {
-    away: Team;
-    home: Team;
-}
 
-interface Team {
-    name: string;
-    lineup:
-        {
-            batters: Player[];
-            pitcher: string;
-        };
-}
 
 export default function NewGame() {
     const battingOrderNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -38,14 +27,28 @@ export default function NewGame() {
     })));
     const [awayPitcher, setAwayPitcher] = useState<string>('');
     const [homePitcher, setHomePitcher] = useState<string>('');
-    
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log('submitting');
-    }
+
+
+    const handleSubmit = createNewGame.bind(null, {
+        away: {
+            name: awayName,
+            lineup: {
+                batters: awayLineup,
+                pitcher: awayPitcher
+            }
+        },
+        home: {
+            name: homeName,
+            lineup: {
+                batters: homeLineup,
+                pitcher: homePitcher
+            }
+
+        },
+    });
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form action={handleSubmit}>
             <div className="space-y-8">
                 <div className="space-y-12 items-stretch gap-10 lg:columns-2">
                     <div>
@@ -70,6 +73,7 @@ export default function NewGame() {
                     </div>
                 </div>
                 <div className="flex justify-center h-full">
+
                     <button
                         type="submit"
                         className="flex-initial md:basis-1/6 align-middle rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white

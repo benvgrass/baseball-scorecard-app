@@ -49,40 +49,36 @@ export default function NewGame() {
 
     return (
         <form action={handleSubmit}>
-            <div className="space-y-8">
-                <div className="space-y-12 items-stretch gap-10 lg:columns-2">
-                    <div>
-                        <TeamInput home={false}
-                                teamName={awayName}
-                                setTeamName={setAwayName}
-                                lineup={awayLineup}
-                                setLineup={setAwayLineup}
-                                startingPitcher={awayPitcher}
-                                setStartingPitcher={setAwayPitcher}
-                        />
-                    </div>
-                    <div>
-                        <TeamInput home={true}
-                                teamName={homeName}
-                                setTeamName={setHomeName}
-                                lineup={homeLineup}
-                                setLineup={setHomeLineup}
-                                startingPitcher={homePitcher}
-                                setStartingPitcher={setHomePitcher}
-                        />
-                    </div>
+            <div className="flex-col space-y-8 m-4">
+                <div className="grid items-stretch   gap-10 lg:grid-columns-2 lg:grid-flow-col">
+                    <TeamInput home={false}
+                               teamName={awayName}
+                               setTeamName={setAwayName}
+                               lineup={awayLineup}
+                               setLineup={setAwayLineup}
+                               startingPitcher={awayPitcher}
+                               setStartingPitcher={setAwayPitcher}
+                    />
+                    <TeamInput home={true}
+                               teamName={homeName}
+                               setTeamName={setHomeName}
+                               lineup={homeLineup}
+                               setLineup={setHomeLineup}
+                               startingPitcher={homePitcher}
+                               setStartingPitcher={setHomePitcher}
+                    />
                 </div>
-                <div className="flex justify-center h-full">
+            </div>
+            <div className="flex justify-center h-full">
 
-                    <button
-                        type="submit"
-                        className="flex-initial md:basis-1/6 align-middle rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white
+                <button
+                    type="submit"
+                    className="flex-initial md:basis-1/6 align-middle rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white
                             shadow-md hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
                             focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        Submit
-                    </button>
-                </div>
+                >
+                    Submit
+                </button>
             </div>
         </form>
     )
